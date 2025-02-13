@@ -1,0 +1,44 @@
+experiment:
+  dataset:
+    dataset_name: sst2
+    dataset_loc: data/processed/sst2
+  encoder:
+    encoder_model_name: DenseEncoder
+    encoder_model_params:
+      in_dim: 768
+      hidden_dims:
+      - 512
+      - 256
+      out_dim: 128
+    num_enc_epochs: 20
+    encoder_learning_rate: 0.001
+  simulation:
+    experiment_type: utility+privacy
+    beta: 0.3
+    mine:
+      utility_stats_network_model_name: MINE_Model
+      utility_stats_network_model_params:
+        in_dim: 129
+        hidden_dims:
+        - 64
+        - 32
+      privacy_stats_network_model_name: MINE_Model
+      privacy_stats_network_model_params:
+        in_dim: 129
+        hidden_dims:
+        - 64
+        - 32
+      use_prev_epochs_mi_model: false
+      mine_batch_size: -1
+      mine_epochs_privacy: -1
+      mine_epochs_utility: -1
+      mine_trainer_patience: 200
+
+batch_size: 2048
+device_idx: 3
+experiments_dir: "exps/training"
+experiment_date: "2024-04-29_21-18-50"
+
+hydra:
+  run:
+    dir: ./exps/testing/${now:%Y-%m-%d}_${now:%H-%M-%S}

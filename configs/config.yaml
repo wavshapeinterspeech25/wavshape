@@ -1,0 +1,9 @@
+defaults:
+  - encoder: main
+  - simulation: utility_privacy
+
+device_idx: 3
+
+hydra:
+  run:
+    dir: ./exps/training/${now:%Y-%m-%d}_${now:%H-%M-%S}
